@@ -1,0 +1,10 @@
+---
+- name: Configure Conditional Forwarders
+  win_dsc:
+    resource_name: xDnsServerConditionalForwarder
+    Ensure: "{{ item.ensure | default('present') }}"
+    Name: "{{ item.domain_name }}"
+    MasterServers: "{{ item.servers | join(',') }}"
+    ReplicationScope: "{{ item.replication | default('None') }}"
+  with_items:
+    - "{{ win_dns_server.conditional_forwarders | default([]) }}"

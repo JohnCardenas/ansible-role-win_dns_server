@@ -1,2 +1,17 @@
 ---
 # tasks file for win_dns_server
+- import_tasks: win_dns_server-check.yml
+  tags:
+    - win_dns_server
+    - win_dns_server:check
+    - check
+
+- import_tasks: win_dns_server-install.yml
+  tags:
+    - win_dns_server
+    - win_dns_server:install
+
+- import_tasks: win_dns_server-configure.yml
+  tags:
+    - win_dns_server
+    - win_dns_server:configure

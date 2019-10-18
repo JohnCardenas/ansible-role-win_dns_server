@@ -1,0 +1,17 @@
+---
+- name: Install DNS Services
+  win_feature: >
+    name=DNS
+    include_management_tools=yes
+    include_sub_features=yes
+    state=present
+
+- name: Install PowerShell DSC Feature
+  win_feature: >
+    name=DSC-Service
+    state=present
+
+- name: Deploy xDnsServer PS Module
+  win_psmodule:
+    name: xDnsServer
+    state: present

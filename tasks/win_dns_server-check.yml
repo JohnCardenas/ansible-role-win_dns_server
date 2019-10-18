@@ -1,0 +1,14 @@
+---
+- fail:
+    msg: "The win_dns_server role can only be deployed on Windows."
+  when: ansible_facts['os_family'] != "Windows"
+
+- name: "Check Required Variables"
+  fail: msg="win_dns_server.{{ item }} is not defined"
+  when: item not in win_dns_server
+  loop:
+    - conditional_forwarders
+
+#- name: "Check Conditional Forwarders"
+#  fail: msg="Invalid value {{ item }}"
+#  when: 
