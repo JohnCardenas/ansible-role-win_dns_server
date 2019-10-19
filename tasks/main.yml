@@ -12,6 +12,7 @@
     - win_dns_server:install
 
 - import_tasks: win_dns_server-configure.yml
+  when: ansible_facts['windows_domain_role'].find("Primary") != -1
   tags:
     - win_dns_server
     - win_dns_server:configure
